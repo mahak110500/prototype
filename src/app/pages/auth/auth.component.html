@@ -1,0 +1,40 @@
+<div class="mainDiv">
+    <div class="container">
+        <div class="img-container" style="background-color: blue;">
+            <img src="../../../assets/new/img/login-illustration.png">
+        </div>
+    </div>
+    <div class="container">
+        <div class="signup">
+            <h1>Login Now</h1>
+            <form class="common-form" #loginForm="ngForm" (ngSubmit)="onFormSubmit(loginForm)">
+                <div>
+                    <input class="form-input" type="text" placeholder="Enter email" ngModel name="email" required email
+                        #email="ngModel" />
+                    <div class="help-text" *ngIf="email.touched && !email.valid">
+                        <div *ngIf="email.errors.required">Email is required</div>
+                        <div *ngIf="email.errors.email">Email is invalid</div>
+                    </div>
+                </div><br>
+
+                <div>
+                    <input class="form-input" type="password" placeholder="Enter Password" ngModel name="password"
+                        required minlength="6" #password="ngModel" />
+                    <div class="help-text" *ngIf="password.touched && !password.valid">
+                        <div *ngIf="password.errors.required">Password is required</div>
+                        <div *ngIf="password.errors.minlength">
+                            Password must contain atleast 6 characters
+                        </div>
+                    </div>
+                </div><br>
+                <div>
+                    <a>Forget Password</a>
+                </div>
+                <div class="mt-4">
+                    <button class="form-button" [disabled]="!loginForm.valid">Login</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
