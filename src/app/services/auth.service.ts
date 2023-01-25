@@ -22,9 +22,10 @@ export class AuthService {
 	login(username: string, password: string) {
 		this.http.post<AuthresponseData>(`http://103.127.29.85:3000/api/admin/login`,
 			{ username, password }
-		).subscribe((result) =>{
+		).subscribe((result:any) =>{
 			this.isSellerLoggedIn.next(true);
-			localStorage.setItem('userData',JSON.stringify(result));
+			localStorage.setItem('userData',JSON.stringify(result.content.dataList[0].userDetails));
+			localStorage.setItem('token',JSON.stringify(result.content.dataList[0].token));
 
 			this.router.navigate(['/home-page']);
 

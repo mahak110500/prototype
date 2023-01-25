@@ -15,7 +15,7 @@ export class ManageProjectsService{
 
     getUsers(){
 
-        let auth_token = JSON.parse(localStorage.getItem('userData'));
+        let auth_token = JSON.parse(localStorage.getItem('token'));
         console.log(auth_token);
         // console.log(auth_token.content.dataList);
         
