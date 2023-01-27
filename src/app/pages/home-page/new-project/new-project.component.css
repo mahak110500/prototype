@@ -1,0 +1,31 @@
+input{
+    font-size: 15px;
+}
+
+.input-box {
+    border-radius: 8px;
+    border: 1px solid grey;
+    padding: 20px;
+    width: 200px;
+    height: 15px;
+}
+
+.formContainer{
+    border-radius: 8px;
+    border: 1px solid grey;
+    box-shadow: 2px 2px #b8b6b6;
+    padding: 20px;
+}
+
+.imgContainer{
+    border-radius: 8px;
+    border: 1px solid grey;
+    box-shadow: 2px 2px #b8b6b6;
+    padding: 20px;
+}
+
+.img-container{
+    border-radius: 8px;
+    border: 1px dotted grey;
+    padding: 20px;
+}

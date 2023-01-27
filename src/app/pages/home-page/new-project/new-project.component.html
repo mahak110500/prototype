@@ -1,1 +1,228 @@
-<p>new-project works!</p>
+<body class="">
+    <div class="wrapper ">
+
+        <div class="main-panel" style="height: 100vh;">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-horizontal-stepper labelPosition="botton" linear="false">
+                            <mat-step [stepControl]="profileFormGroup">
+                                <form [formGroup]="profileFormGroup">
+                                    <ng-template matStepLabel>Step-1</ng-template>
+                                    <div class="formContainer">
+                                        <!-- CUSTOMER DETAILS -->
+                                        <div class="form-container1">
+                                            <mat-label style="color: rgb(4, 4, 65);">
+                                                <h1>Customer Details</h1>
+                                            </mat-label>
+
+                                            <div style="display: flex;">
+                                                <div style="padding-left: 20px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>First Name</mat-label>
+                                                        <div class="input-box">
+                                                            <input matInput placeholder="First Name"
+                                                                formControlName="firstname">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div style="padding-left: 80px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Last Name</mat-label>
+                                                        <div class="input-box">
+                                                            <input matInput placeholder="Last Name"
+                                                                formControlName="lastname">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div><br><br>
+
+                                            <div style="display: flex;">
+                                                <div style="padding-left: 20px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Email Address</mat-label>
+                                                        <div class="input-box">
+                                                            <input matInput placeholder="" formControlName="email">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div style="padding-left: 80px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Phone Number</mat-label>
+                                                        <div class="input-box">
+                                                            <input matInput placeholder="Phone Number"
+                                                                formControlName="phoneno">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div><br><br>
+
+
+                                            <div style="display: flex;">
+                                                <div style="padding-left: 20px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label> Address</mat-label>
+                                                        <div class="input-box">
+                                                            <input matInput placeholder="Address"
+                                                                formControlName="address">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div><br><br>
+
+                                        <!-- PROJECT DETAILS -->
+                                        <div class="form-container1">
+                                            <mat-label style="color: rgb(4, 4, 65);">
+                                                <h1>Project Information</h1>
+                                            </mat-label>
+
+                                            <div style="display: flex;">
+                                                <div style="padding-left: 20px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Project Name</mat-label>
+                                                        <div class="input-box">
+                                                            <input matInput placeholder="First Name"
+                                                                formControlName="projectName">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div style="padding-left: 80px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Complete Percent</mat-label>
+                                                        <div class="input-box">
+                                                            <input matInput placeholder="Last Name"
+                                                                formControlName="completePercent">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div><br><br>
+
+                                            <div style="display: flex;">
+                                                <div style="padding-left: 20px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Start Date</mat-label>
+                                                        <div class="input-box">
+                                                            <input type="date" matInput placeholder=""
+                                                                formControlName="startDate">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div style="padding-left: 80px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>End Date</mat-label>
+                                                        <div class="input-box">
+                                                            <input type="date" matInput placeholder="Phone Number"
+                                                                formControlName="endDate">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div><br><br>
+
+                                            <div style="display: flex;">
+                                                <div style="padding-left: 20px;">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Project Description</mat-label>
+                                                        <div class="input-box">
+                                                            <input type="textarea" matInput placeholder="Address"
+                                                                formControlName="description">
+                                                        </div>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div><br>
+                                    </div>
+                                    <div style="margin-top: 20px;">
+                                        <button mat-button matStepperNext style="float: right;">Next</button>
+                                    </div>
+                                </form>
+                            </mat-step>
+
+                            <mat-step>
+                                <ng-template matStepLabel>Step-2</ng-template>
+                                <div class="imgContainer">
+                                    <mat-label style="color: rgb(4, 4, 65);">
+                                        <h1>Documents Upload</h1>
+                                        <span style="color: red;">(Only csv, xlsx, xls, doc, docx, ppt, jpg, jpeg, png, pdf, txt file is allowed)
+                                        </span><br>
+                                    </mat-label>
+                                    <div class="img-container">
+                                        <div class="row">
+                                            <div>
+                                                <div class="card-pannel teal lighten-2">
+                                                    <h4 style="text-align: center; color: rgb(5, 5, 70);">Upload File</h4>
+                                                    <h4  style="text-align: center;">OR</h4>
+                                                </div>
+                                                <div class="center">
+                                                    <ngx-file-drop multiple="true" dropZoneLabel="Drop files here"
+                                                    (onFileDrop)="dropped($event)"
+                                                    >
+                                                    </ngx-file-drop>
+                                                </div>
+                                                <div>
+                                                    <form class="form-control">
+                                                        <input type="file" class="form-control"
+                                                            accept=".csv,.xlsx,.xls,.doc,.docx,.ppt,.jpg,.jpeg,.png,.pdf,.txt"
+                                                            (change)="onUpload($event)" multiple="multiple" ><br>
+                                                        <span [innerHTML]="resultImg"></span>
+                                                        <div class="upload-table">
+                                                            <div class="table">
+                                                             
+                                                                <tbody>
+                                                                    <tr *ngFor="let item of files; let i=index">
+                                                                         <td>File Name:{{item.relativePath}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <!-- <div class="upload-table">
+                                                    <div class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>File Name:</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of files; let i=index">
+                                                                <td>{{item.relativePath}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div style="margin-bottom: 30px;">
+                                        <button mat-button matStepperPrevious style="float: left;">Previous</button>
+                                        <button mat-button matStepperNext style="float: right;">Next</button>
+                                    </div>
+                                </div>
+                            </mat-step>
+
+                            <mat-step>
+                                <ng-template matStepLabel>Step-3</ng-template>
+                                <p>Documents</p>
+                                <button mat-button matStepperPrevious style="float: left;">Previous</button>
+                                <button mat-button matStepperNext style="float: right;">Next</button>
+                            </mat-step>
+
+                            <mat-step>
+                                <ng-template matStepLabel>Step-4</ng-template>
+                                <p>Documents</p>
+
+                                <button mat-button matStepperPrevious>Previous</button>
+                                <button mat-button matStepperNext style="float: right;">Finish</button>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>

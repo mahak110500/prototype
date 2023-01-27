@@ -14,23 +14,18 @@ export class ManageProjectsService{
     constructor(private http: HttpClient, private router:Router) { }
 
     getUsers(){
-
         let auth_token = JSON.parse(localStorage.getItem('token'));
-        console.log(auth_token);
-        // console.log(auth_token.content.dataList);
+        // console.log(auth_token);
         
-
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${auth_token}`
+          'Authorization': `${auth_token}`
         });
     
         const requestOptions = { headers: headers };
-        return this.http.get<User>("http://103.127.29.85:3000/api/admin/manage-project/", requestOptions)
-        .subscribe((response) => {
-            console.log(response);
-            
-        });
+
+        return this.http.get<User>("http://103.127.29.85:3000/api/admin/manage-project/", requestOptions);
+       
     }
 
  

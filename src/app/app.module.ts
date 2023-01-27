@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { WorkspaceComponent } from './pages/home-page/workspace/workspace.component';
 import { ManageProjectsComponent } from './pages/home-page/manage-projects/manage-projects.component';
@@ -16,7 +17,13 @@ import { ConfigureComponent } from './pages/home-page/configure/configure.compon
 import { AdminComponent } from './pages/home-page/admin/admin.component';
 import { SidebarComponent } from './pages/home-page/sidebar/sidebar.component';
 import { HeaderComponent } from './pages/home-page/header/header.component';
-import { TokenInterceptorService } from './services/token-interceptor.service';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { NgxFileDropModule } from 'ngx-file-drop';
+
+
 
 @NgModule({
   declarations: [
@@ -36,14 +43,28 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgxFileDropModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi:true
-  }],
+  exports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    MatStepperModule
+
+  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

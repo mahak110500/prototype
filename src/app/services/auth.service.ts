@@ -33,4 +33,10 @@ export class AuthService {
 			
 		})
 	}
+
+	logout(){
+		localStorage.removeItem('userData');
+		localStorage.removeItem('token');
+		this.router.navigate(['auth']);
+	}
 }
