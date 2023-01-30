@@ -13,6 +13,7 @@ interface FormresponseData {
 })
 export class NewProjectService {
 	profileForm: any;
+	newProjectData:any;
 
 
 	constructor(private http: HttpClient) { }
@@ -34,7 +35,7 @@ export class NewProjectService {
 		// console.log(options);
 
 
-		return this.http.post<any>(`http://103.127.29.85:3000/api/admin/save-customer-project`, formData, options)
+		return this.http.post<UserData>(`http://103.127.29.85:3000/api/admin/save-customer-project`, formData, options)
 
 
 	}
@@ -61,7 +62,27 @@ export class NewProjectService {
 
 
 
-	uploadFile(id: any) {
+	uploadFile() {
+		this.newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
+		console.log(this.newProjectData);
+
+		
+		this.newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
+		console.log(this.newProjectData);
+		console.log(this.newProjectData.customer_insertId);
+
+		let customerId = this.newProjectData.customer_insertId;
+		console.log(customerId);
+
+		let projectId = this.newProjectData.project_insertId;
+		console.log(projectId);
+		
+
+		let newData = { 'customerId':customerId, 'projectId': projectId};
+		console.log(newData);
+		
+		
+	
 
 		let auth_token = JSON.parse(localStorage.getItem('token'));
 		// console.log(auth_token);
@@ -73,6 +94,6 @@ export class NewProjectService {
 
 		const options = { headers: headers }
 
-		this.http.post<FormresponseData>(`http://103.127.29.85:3000/api//admin/upload-doc`, options)
+		return this.http.post<FormresponseData>(`http://103.127.29.85:3000/api//admin/upload-doc`, newData,options)
 	}
 }

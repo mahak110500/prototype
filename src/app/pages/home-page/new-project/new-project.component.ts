@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgxFileDropEntry } from 'ngx-file-drop';
 import { NewProjectService } from 'src/app/services/new-project.service';
+import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-new-project',
@@ -17,6 +17,10 @@ export class NewProjectComponent implements OnInit {
 	files: any[] = [];
 
 	profileForm: any = {}
+	newData:any;
+
+	newProjectData: any;
+
 
 	constructor(private fb: FormBuilder, private newService: NewProjectService, private router: Router) { }
 
@@ -41,10 +45,36 @@ export class NewProjectComponent implements OnInit {
 
 	onSubmit(profileFormGroup) {
 		this.profileForm = profileFormGroup.value;
-		// console.log(this.profileForm);
+		console.log(this.profileForm);
 
-		this.newService.postDetails(this.profileForm).subscribe((res) => {
-			console.log(res);
+		this.newService.postDetails(this.profileForm).subscribe((res: any) => {
+			// console.log(res.content.dataList[0]);
+
+			localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
+
+			
+
+
+			// this.newData = this.newProjectData((data) =>{
+				
+			// 	const customerId = data.customer_insertId;
+			// 	console.log(customerId);
+				
+			// })
+
+
+
+			// let iterableData = this.newProjectData.map(item => {
+			// 	console.log(item);
+
+			// 	const customerId = item.customer_insertId;
+			// 	const this.newProjectData.customer_insertId = item.project_insertId;
+
+			// 	return { customerId, projectId };
+			// })
+
+			// let newData = iterableData;
+			// console.log(newData);
 
 		});
 
@@ -110,13 +140,16 @@ export class NewProjectComponent implements OnInit {
 	*/
 	prepareFilesList(files: Array<any>) {
 		console.log(files);
-		
+
 		for (const item of files) {
 			item.progress = 0;
 			this.files.push(item);
 		}
 		this.uploadFilesSimulator(0);
-		this.newService.uploadFile(files);
+		this.newService.uploadFile().subscribe(res => {
+			console.log(res);
+
+		})
 	}
 
 	/**
