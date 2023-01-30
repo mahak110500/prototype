@@ -17,7 +17,7 @@ export class ManageProjectsComponent implements OnInit {
 	ngOnInit(): void {
 		this.manage.getUsers().subscribe((res) => {
 			this.projectData = res;
-			console.log(this.projectData.content.dataList);
+			// console.log(this.projectData.content.dataList);
 			this.dataList = this.projectData.content.dataList;
 		});
 

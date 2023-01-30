@@ -52,7 +52,7 @@ export class NewProjectComponent implements OnInit {
 
 	onFinish(profileFormGroup) {
 		this.profileForm = profileFormGroup.value;
-		console.log(this.profileForm);
+		// console.log(this.profileForm);
 
 		this.newService.getDetails(this.profileForm);
 		this.router.navigate(['/manage-projects']);

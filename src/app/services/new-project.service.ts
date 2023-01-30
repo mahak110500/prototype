@@ -19,7 +19,7 @@ export class NewProjectService {
 
 	postDetails(formData) {
 		this.profileForm = formData;
-		console.log(formData);
+		// console.log(formData);
 		
 
 		let auth_token = JSON.parse(localStorage.getItem('token'));
@@ -33,7 +33,6 @@ export class NewProjectService {
 		const options = { headers: headers }
 		// console.log(options);
 
-		
 
 		return this.http.post<any>(`http://103.127.29.85:3000/api/admin/save-customer-project`, formData, options)
 
@@ -42,10 +41,8 @@ export class NewProjectService {
 
 	getDetails(formData) {
 		this.profileForm = formData;
-		console.log(this.profileForm);
 
 		let auth_token = JSON.parse(localStorage.getItem('token'));
-		console.log(auth_token);
 
 		const headers = new HttpHeaders({
 			'Content-Type': 'application/json',
@@ -53,7 +50,6 @@ export class NewProjectService {
 		});
 
 		const options = { formData, headers: headers }
-		console.log(options);
 
 
 		this.http.get<UserData>(`http://103.127.29.85:3000/api/admin/getcustomerbyid/328`, options
