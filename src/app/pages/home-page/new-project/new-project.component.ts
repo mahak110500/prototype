@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { NewProjectService } from 'src/app/services/new-project.service';
 
 @Component({
 	selector: 'app-new-project',
@@ -10,37 +12,130 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 export class NewProjectComponent implements OnInit {
 
 	profileFormGroup: FormGroup;
-	resultImg:string = '' ;
+	resultImg: string = '';
 
-	constructor(private fb: FormBuilder) { }
+	files: any[] = [];
+
+	profileForm: any = {}
+
+	constructor(private fb: FormBuilder, private newService: NewProjectService, private router: Router) { }
 
 	ngOnInit(): void {
 		this.profileFormGroup = this.fb.group({
-			firstname: ['', Validators.required],
-			lastname: ['', Validators.required],
+			firstName: ['', Validators.required],
+			lastName: ['', Validators.required],
+			orderId: '',
 			email: ['', Validators.required],
-			phoneno: ['', Validators.required],
+			phone: ['', Validators.required],
 			address: ['', Validators.required],
 			projectName: ['', Validators.required],
 			completePercent: ['', Validators.required],
 			startDate: ['', Validators.required],
 			endDate: ['', Validators.required],
-			description: ['', Validators.required],
+			projectDescription: ['', Validators.required],
+
 		})
+
+
 	}
 
-	onUpload(event:any):void{
-		var selectFile = event.target.files;
-		for(var i =0; i < selectFile.length; i++ ){
-			this.resultImg += '<br> File name: ' +  selectFile[i].name; 
-		}
+	onSubmit(profileFormGroup) {
+		this.profileForm = profileFormGroup.value;
+		// console.log(this.profileForm);
+
+		this.newService.postDetails(this.profileForm).subscribe((res) => {
+			console.log(res);
+
+		});
+
 	}
 
-	public files: NgxFileDropEntry[] = [];
+	onFinish(profileFormGroup) {
+		this.profileForm = profileFormGroup.value;
+		console.log(this.profileForm);
 
-	public dropped(files:NgxFileDropEntry[]){
-		// console.log(files);
-		this.files = files;
+		this.newService.getDetails(this.profileForm);
+		this.router.navigate(['/manage-projects']);
+	}
+
+	//For drag and drop and uploading files
+
+	/**
+	  * on file drop handler
+	  */
+	onFileDropped($event) {
+		this.prepareFilesList($event);
+	}
+
+	/**
+	 * handle file from browsing
+	 */
+	fileBrowseHandler(files) {
+		console.log(this.files);
+
+		this.prepareFilesList(files);
+	}
+
+	/**
+	 * Delete file from files list
+	 * @param index (File index)
+	 */
+	deleteFile(index: number) {
+		this.files.splice(index, 1);
+	}
+
+	/**
+	 * Simulate the upload process
+	 */
+	uploadFilesSimulator(index: number) {
+		setTimeout(() => {
+			if (index === this.files.length) {
+				return;
+			} else {
+				const progressInterval = setInterval(() => {
+					if (this.files[index].progress === 100) {
+						clearInterval(progressInterval);
+						this.uploadFilesSimulator(index + 1);
+					} else {
+						this.files[index].progress += 5;
+					}
+				}, 200);
+			}
+		}, 1000);
+	}
+
+	/**
+	* Convert Files list to normal array list
+	* @param files (Files List)
+	*/
+	prepareFilesList(files: Array<any>) {
+		console.log(files);
 		
+		for (const item of files) {
+			item.progress = 0;
+			this.files.push(item);
+		}
+		this.uploadFilesSimulator(0);
+		this.newService.uploadFile(files);
 	}
+
+	/**
+	 * format bytes
+	 * @param bytes (File size in bytes)
+	 * @param decimals (Decimals point)
+	 */
+	formatBytes(bytes, decimals) {
+		if (bytes === 0) {
+			return '0 Bytes';
+		}
+		const k = 1024;
+		const dm = decimals <= 0 ? 0 : decimals || 2;
+		const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+		const i = Math.floor(Math.log(bytes) / Math.log(k));
+		return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+	}
+
+
+
+
 }

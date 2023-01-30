@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,7 +23,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgxFileDropModule } from 'ngx-file-drop';
-
+import { ProgressComponent } from './pages/home-page/new-project/progress/progress.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     ConfigureComponent,
     AdminComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     MatFormFieldModule,
     MatInputModule,
     NgxFileDropModule
+
   ],
   exports: [
     BrowserModule,
