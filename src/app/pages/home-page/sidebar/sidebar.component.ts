@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { DROPDOWN } from 'src/app/dropdown-mock';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -10,24 +8,29 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 	styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-	dropdowns = DROPDOWN;
+	
 
-	dropdownValue!: FormGroup;
-	dropDownCode?: string = "";
+	showMore = 'ADMIN'
+	hidden: boolean;
 
-	constructor(private authService: AuthService, private fromBuilder: FormBuilder) { }
+	constructor(private authService: AuthService) { }
 
 	ngOnInit(): void {
-		this.dropdownValue = this.fromBuilder.group({
-			dropdown: ['']
-		})
-	}
-
-	dropdown(e:any){
-		console.log(e.target.value);
-		this.dropDownCode = e.target.value;
 		
 	}
+
+	toggle() {
+		this.hidden = !this.hidden;
+		if (this.hidden) {
+			this.showMore = 'show less'
+		}
+
+		if (!this.hidden) {
+			this.showMore = ' show more'
+		}
+	}
+
+	
 
 	onLogout() {
 		this.authService.logout();

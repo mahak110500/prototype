@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,12 +6,21 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'UserProfile';
+export class AppComponent implements OnInit {
+  title = 'UserProfile'; 
+  
+  currentURL='';
 
-  constructor(private router:Router){}
+  constructor(private router: Router) { }
 
-  shouldShow(){
+  ngOnInit() {
+    this.currentURL = window.location.href;   
+    console.log(this.currentURL);
+    
+  }
+
+  shouldShow() {
     return !(this.router.url === '/auth');
+
   }
 }

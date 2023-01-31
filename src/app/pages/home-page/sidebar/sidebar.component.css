@@ -1,3 +1,9 @@
 .sidebar{
     background-color: blue;
 }
+
+
+.hidden{
+    list-style-type: none;
+    font-size: 16px;
+}

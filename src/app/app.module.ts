@@ -24,6 +24,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { ProgressComponent } from './pages/home-page/new-project/progress/progress.component';
+import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ProgressComponent } from './pages/home-page/new-project/progress/progre
     AdminComponent,
     SidebarComponent,
     HeaderComponent,
-    ProgressComponent
+    ProgressComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

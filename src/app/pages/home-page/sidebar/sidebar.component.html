@@ -50,17 +50,16 @@
             </li>
             <li>
                 <a routerLink="/admin">
-                    <!-- <i class="nc-icon nc-single-02"></i> -->
-                    <!-- <p>ADMIN</p> -->
-                    <div class="card" style="width: 18rem;">
-                        <form [formGroup]="dropdownValue">
-                            <select class=" form-select-sm mb-3" formControlName="dropdown" (change)="dropdown($event)">
-                                <option value=""> <i class="nc-icon nc-single-02"></i>ADMIN</option>
-                               
-                                <option *ngFor="let dropdown of dropdowns" value="{{dropdown.code}}">{{dropdown.name}}</option>
-                            </select>
-                        </form>
-                    </div>
+                    <i class="nc-icon nc-single-02"></i>
+                    <p (click)="toggle()">ADMIN</p>
+                    <ul>
+                        <li class="hidden" *ngIf ="hidden">USER MANAGEMENT</li>
+                        <li class="hidden" *ngIf ="hidden">INSTANCE MANAGEMENT</li>
+                        <li class="hidden" *ngIf ="hidden">BILLING</li>
+                        <li class="hidden" *ngIf ="hidden">CAPACITY</li>
+                    </ul>
+                       
+                    <!-- <a href="#" (click)="toggle()">{{showMore}}</a> -->
                     
                 </a>
             </li>

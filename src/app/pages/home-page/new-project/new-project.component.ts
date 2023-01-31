@@ -11,7 +11,9 @@ import { map } from 'rxjs/operators';
 })
 export class NewProjectComponent implements OnInit {
 
+	backInfo: any = false;
 
+	id: any;
 	profileFormGroup: FormGroup;
 	resultImg: string = '';
 
@@ -28,42 +30,81 @@ export class NewProjectComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.profileFormGroup = this.fb.group({
-			firstName: ['', Validators.required],
-			lastName: ['', Validators.required],
+			firstName: ['',[Validators.required,Validators.pattern(/^[a-zA-Z ]*$/)]],
+			lastName: ['',[Validators.required,Validators.pattern(/^[a-zA-Z ]*$/)]],
 			orderId: '',
-			email: ['', Validators.required],
-			phone: ['', Validators.required],
+			email: ['', [Validators.required, Validators.email]],
+			phone: ['',  [Validators.required, Validators.minLength(10),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
 			address: ['', Validators.required],
 			projectName: ['', Validators.required],
-			completePercent: ['', Validators.required],
+			completePercent: ['',[Validators.required,Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
 			startDate: ['', Validators.required],
 			endDate: ['', Validators.required],
 			projectDescription: ['', Validators.required],
 
 		})
 
-
 	}
 
 	onSubmit(profileFormGroup) {
 		this.profileForm = profileFormGroup.value;
-		console.log(this.profileForm);
 
 		this.newService.postDetails(this.profileForm).subscribe((res: any) => {
 			// console.log(res.content.dataList[0]);
-
 			localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
-
-
 		});
+
+		let newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
+		if (newProjectData != null) {
+			this.onNext(this.profileForm);
+		}
+
+
+		// this.newService.postDetails(this.profileForm).subscribe((res: any) => {
+		// 	// console.log(res.content.dataList[0]);
+		// 	localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
+		// });
+
+
+		// if(this.backInfo){
+
+		// }else{
+		// 	this.newService.postDetails(this.profileForm).subscribe((res: any) => {
+		// 		// console.log(res.content.dataList[0]);
+		// 		localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
+		// 	});
+		// }
+
+
+	}
+
+	onPrevious() {
+		this.backInfo = true;
+		this.newService.getDetails().subscribe(res => {
+			console.log(res);
+		});
+	}
+
+	onNext(profileFormGroup) {
+		this.profileForm = profileFormGroup.value;
+		console.log(this.profileForm);
+
+
+		let newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
+
+		if (newProjectData != null) {
+			this.newService.putDetails(this.profileForm).subscribe(res => {
+				console.log(res);
+
+			})
+		}
 
 	}
 
 	onFinish(profileFormGroup) {
 		this.profileForm = profileFormGroup.value;
-		// console.log(this.profileForm);
 
-		this.newService.getDetails(this.profileForm);
+		// this.newService.getDetails(this.profileForm);
 		this.router.navigate(['/manage-projects']);
 	}
 
@@ -75,7 +116,7 @@ export class NewProjectComponent implements OnInit {
 	onFileDropped($event: any) {
 		this.prepareFilesList($event);
 		// this.onSelectFile($event);
-		
+
 	}
 
 	/**
@@ -86,9 +127,12 @@ export class NewProjectComponent implements OnInit {
 
 	}
 
+	/**
+	 * for downloading file
+	 */
 	onDownload(path: any) {
 		console.log(path);
-		
+
 		if (path.split('.') === "pdf" ||
 			path.split('.') === "doc" ||
 			path.split('.') === "docx" ||
@@ -108,15 +152,23 @@ export class NewProjectComponent implements OnInit {
 		}
 	}
 
-	
 
-	
 	/**
 	 * Delete file from files list
 	 * @param index (File index)
 	 */
 	deleteFile(index: number) {
-		this.files.splice(index, 1);
+		// this.files.splice(index, 1);
+		// window.alert('Are you sure you want to delete?')
+
+		var result = confirm("Are you sure you want to delete?");
+		if (result) {      
+			this.files.splice(index, 1);
+
+			alert('Deleted');
+		} else {
+		  alert('Not deleted');
+		}
 	}
 
 	/**
@@ -152,10 +204,10 @@ export class NewProjectComponent implements OnInit {
 			this.files.push(item);
 		}
 		this.uploadFilesSimulator(0);
-		// this.newService.uploadFile(files).subscribe(res => {
-		// 	// console.log(res);
+		this.newService.uploadFile(files).subscribe(res => {
+			// console.log(res);
 
-		// })
+		})
 	}
 
 	/**

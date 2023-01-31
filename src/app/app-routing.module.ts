@@ -9,6 +9,7 @@ import { WorkspaceComponent } from './pages/home-page/workspace/workspace.compon
 import { AuthComponent } from './pages/auth/auth.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthGuard } from './pages/auth/auth.guard';
+import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -16,6 +17,11 @@ const routes: Routes = [
 		path: 'auth',
 		component: AuthComponent,
 		// canActivate: [AuthGuard]
+	
+	},
+	{
+		path: 'forget-password',
+		component: ForgetPasswordComponent,
 	
 	},
 	{

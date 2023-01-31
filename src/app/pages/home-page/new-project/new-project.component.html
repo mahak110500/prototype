@@ -18,20 +18,42 @@
 
                                             <div style="display: flex;">
                                                 <div style="padding-left: 20px;">
+                                                    <mat-label>First Name</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>First Name</mat-label>
                                                         <div class="input-box">
                                                             <input matInput placeholder="First Name"
                                                                 formControlName="firstName">
-                                                        </div>
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('firstName').invalid && profileFormGroup.get('firstName').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('firstName').errors?.required"
+                                                                    style="color: red;">**Please enter the
+                                                                    Firstname</span>
+                                                                    <span
+                                                                    *ngIf="profileFormGroup.get('firstName').errors?.pattern"
+                                                                    style="color: red;">**Only alphabets are
+                                                                    allowed</span>
+                                                            </div>
+                                                        </div><br>
                                                     </mat-form-field>
                                                 </div>
-                                                <div style="padding-left: 80px;">
+                                                <div style="padding-left: 100px; float: right;">
+                                                    <mat-label>Last Name</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Last Name</mat-label>
                                                         <div class="input-box">
                                                             <input matInput placeholder="Last Name"
                                                                 formControlName="lastName">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('lastName').invalid && profileFormGroup.get('lastName').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('lastName').errors?.required"
+                                                                    style="color: red;">**Please enter the
+                                                                    Lastname</span>
+                                                                    <span
+                                                                    *ngIf="profileFormGroup.get('lastName').errors?.pattern"
+                                                                    style="color: red;">**Only alphabets are
+                                                                    allowed</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
@@ -40,19 +62,43 @@
 
                                             <div style="display: flex;">
                                                 <div style="padding-left: 20px;">
+                                                    <mat-label>Email Address</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Email Address</mat-label>
                                                         <div class="input-box">
-                                                            <input matInput placeholder="" formControlName="email">
+                                                            <input matInput placeholder="Email" formControlName="email">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('email').invalid && profileFormGroup.get('email').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('email').errors?.required"
+                                                                    style="color: red;">**Please enter the Email</span>
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('email').errors?.email"
+                                                                    style="color: red;">**Please enter the Email</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
                                                 <div style="padding-left: 80px;">
+                                                    <mat-label>Phone Number</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Phone Number</mat-label>
                                                         <div class="input-box">
                                                             <input matInput placeholder="Phone Number"
                                                                 formControlName="phone">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('phone').invalid && profileFormGroup.get('phone').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('phone').errors?.required"
+                                                                    style="color: red;">**Please enter the Phone
+                                                                    number</span>
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('phone').errors?.minlength"
+                                                                    style="color: red;">**Minimum 10 digits are
+                                                                    required</span>
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('phone').errors?.pattern"
+                                                                    style="color: red;">**Only numbers are
+                                                                    allowed</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
@@ -62,11 +108,18 @@
 
                                             <div style="display: flex;">
                                                 <div style="padding-left: 20px;">
+                                                    <mat-label> Address</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label> Address</mat-label>
                                                         <div class="input-box">
                                                             <input matInput placeholder="Address"
                                                                 formControlName="address">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('address').invalid && profileFormGroup.get('address').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('address').errors?.required"
+                                                                    style="color: red;">**Please enter the
+                                                                    Address</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
@@ -81,20 +134,38 @@
 
                                             <div style="display: flex;">
                                                 <div style="padding-left: 20px;">
+                                                    <mat-label>Project Name</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Project Name</mat-label>
                                                         <div class="input-box">
-                                                            <input matInput placeholder="First Name"
+                                                            <input matInput placeholder="Project Name"
                                                                 formControlName="projectName">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('projectName').invalid && profileFormGroup.get('projectName').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('projectName').errors?.required"
+                                                                    style="color: red;">**Please enter the
+                                                                    Project Name</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
                                                 <div style="padding-left: 80px;">
+                                                    <mat-label>Complete Percent</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Complete Percent</mat-label>
                                                         <div class="input-box">
-                                                            <input matInput placeholder="Last Name"
+                                                            <input matInput placeholder="Complete percent"
                                                                 formControlName="completePercent">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('completePercent').invalid && profileFormGroup.get('completePercent').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('completePercent').errors?.required"
+                                                                    style="color: red;">**Please enter the
+                                                                    Complete Percent</span>
+                                                                    <span
+                                                                    *ngIf="profileFormGroup.get('completePercent').errors?.pattern"
+                                                                    style="color: red;">**Only numbers are
+                                                                    allowed</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
@@ -102,32 +173,53 @@
 
                                             <div style="display: flex;">
                                                 <div style="padding-left: 20px;">
+                                                    <mat-label>Start Date</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Start Date</mat-label>
                                                         <div class="input-box">
-                                                            <input type="date" matInput placeholder=""
+                                                            <input type="date" matInput placeholder="Start Date"
                                                                 formControlName="startDate">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('startDate').invalid && profileFormGroup.get('startDate').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('startDate').errors?.required"
+                                                                    style="color: red;">**Please select the
+                                                                    Start Date</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
                                                 <div style="padding-left: 80px;">
+                                                    <mat-label>End Date</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>End Date</mat-label>
                                                         <div class="input-box">
                                                             <input type="date" matInput placeholder="End date"
                                                                 formControlName="endDate">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('endDate').invalid && profileFormGroup.get('endDate').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('endDate').errors?.required"
+                                                                    style="color: red;">**Please select the
+                                                                    End Date</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
                                             </div><br><br>
 
                                             <div style="display: flex;">
-                                                <div style="padding-left: 20px;">
+                                                <div>
+                                                    <mat-label>Project Description</mat-label>
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Project Description</mat-label>
                                                         <div class="input-box">
-                                                            <input type="textarea" matInput placeholder="Address"
+                                                            <input type="textarea" matInput placeholder="Description"
                                                                 formControlName="projectDescription">
+                                                            <div
+                                                                *ngIf="profileFormGroup.get('projectDescription').invalid && profileFormGroup.get('projectDescription').touched">
+                                                                <span
+                                                                    *ngIf="profileFormGroup.get('projectDescription').errors?.required"
+                                                                    style="color: red;">**Please enter the
+                                                                    Project Description</span>
+                                                            </div>
                                                         </div>
                                                     </mat-form-field>
                                                 </div>
@@ -135,6 +227,8 @@
                                         </div><br>
                                     </div>
                                     <div style="margin-top: 20px;">
+                                        <button mat-button matStepperPrevious style="float: left;"
+                                            disabled>Previous</button>
                                         <button mat-button matStepperNext style="float: right;">Next</button>
                                     </div>
                                 </form>
@@ -146,7 +240,8 @@
                                 <div class="imgContainer">
                                     <mat-label style="color: rgb(4, 4, 65);">
                                         <h1>Documents Upload</h1>
-                                        <span style="color: red;">(Only csv, xlsx, xls, doc, docx, ppt, jpg, jpeg, pdf, txt file is allowed)
+                                        <span style="color: red;">(Only csv, xlsx, xls, doc, docx, ppt, jpg, jpeg, pdf,
+                                            txt file is allowed)
                                         </span>
                                     </mat-label>
                                     <div>
@@ -170,11 +265,12 @@
                                             <h3>or</h3>
                                             <!-- <img [src]="url" height="200"> <br/>
                                             <input type='file' (change)="onSelectFile($event)"> -->
-                                            <label class="fileDrop" for="fileDropRef" style="margin-bottom: 10px;">Browse for
+                                            <label class="fileDrop" for="fileDropRef"
+                                                style="margin-bottom: 10px;">Browse for
                                                 file</label>
                                         </div>
 
-                                       
+
 
                                         <div class="files-list">
                                             <div class="single-file" *ngFor="let file of files; let i = index">
@@ -223,7 +319,8 @@
                                     </div>
                                     <br><br>
                                     <div style="margin-bottom: 30px;">
-                                        <button mat-button matStepperPrevious style="float: left;">Previous</button>
+                                        <button mat-button matStepperPrevious style="float: left;"
+                                            (click)="onPrevious()">Previous</button>
                                         <button mat-button matStepperNext style="float: right;">Next</button>
                                     </div>
                                 </div>
@@ -238,95 +335,100 @@
                                 <div>
                                     <div class="col-md-12">
                                         <div class="card card-plain">
-                                          <div class="card-header">
-                                            <h1 class="card-title"> Documents</h1>
-                                          </div>
-                                          <div class="card-body">
-                                              <table class="table">
-                                                <thead class=" text-primary">
-                                                  <th>
-                                                    Name
-                                                  </th>
-                                                  <th>
-                                                    OCR
-                                                  </th>
-                                                  <th class="text-right">
-                                                    Delete
-                                                  </th>
-                                                </thead>
-                                                <tbody *ngFor="let file of files; let i = index">
-                                                  <tr>
-                                                    <td>
-                                                        {{ file?.name }}
-                                                    </td>
-                                                    <td>
-                                                        <input class="ocrBox" type="checkbox" id="ocr" name="ocr" value="ocr">&nbsp;
-                                                        <label for="ocr">English</label><br>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        <div class="delete" (click)="deleteFile(i)">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="18"
-                                                                viewBox="0 0 14 18">
-                                                                <path fill="#FF0000" fill-rule="nonzero"
-                                                                    d="M1 16c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v10zm3.17-7.83a.996.996 0 0 1 1.41 0L7 9.59l1.42-1.42a.996.996 0 1 1 1.41 1.41L8.41 11l1.42 1.42a.996.996 0 1 1-1.41 1.41L7 12.41l-1.42 1.42a.996.996 0 1 1-1.41-1.41L5.59 11 4.17 9.58a.996.996 0 0 1 0-1.41zM10.5 1L9.79.29C9.61.11 9.35 0 9.09 0H4.91c-.26 0-.52.11-.7.29L3.5 1H1c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1h-2.5z" />
-                                                            </svg>
-                                                        </div>
-                                                    </td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                          </div>
+                                            <div class="card-header">
+                                                <h1 class="card-title"> Documents</h1>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table">
+                                                    <thead class=" text-primary">
+                                                        <th>
+                                                            Name
+                                                        </th>
+                                                        <th>
+                                                            OCR
+                                                        </th>
+                                                        <th class="text-right">
+                                                            Delete
+                                                        </th>
+                                                    </thead>
+                                                    <tbody *ngFor="let file of files; let i = index">
+                                                        <tr>
+                                                            <td>
+                                                                {{ file?.name }}
+                                                            </td>
+                                                            <td>
+                                                                <input class="ocrBox" type="checkbox" id="ocr"
+                                                                    name="ocr" value="ocr">&nbsp;
+                                                                <label for="ocr">English</label><br>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <div class="delete" (click)="deleteFile(i)">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                        height="18" viewBox="0 0 14 18">
+                                                                        <path fill="#FF0000" fill-rule="nonzero"
+                                                                            d="M1 16c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v10zm3.17-7.83a.996.996 0 0 1 1.41 0L7 9.59l1.42-1.42a.996.996 0 1 1 1.41 1.41L8.41 11l1.42 1.42a.996.996 0 1 1-1.41 1.41L7 12.41l-1.42 1.42a.996.996 0 1 1-1.41-1.41L5.59 11 4.17 9.58a.996.996 0 0 1 0-1.41zM10.5 1L9.79.29C9.61.11 9.35 0 9.09 0H4.91c-.26 0-.52.11-.7.29L3.5 1H1c-.55 0-1 .45-1 1s.45 1 1 1h12c.55 0 1-.45 1-1s-.45-1-1-1h-2.5z" />
+                                                                    </svg>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
-                                <button mat-button matStepperPrevious style="float: left;">Previous</button>
+                                <button mat-button matStepperPrevious style="float: left;"
+                                    (click)="onPrevious()">Previous</button>
                                 <button mat-button matStepperNext style="float: right;">Next</button>
                             </mat-step>
 
                             <mat-step>
                                 <ng-template matStepLabel>Step-4</ng-template>
-                                
+
                                 <div>
                                     <div class="col-md-12">
                                         <div class="card card-plain">
-                                          <div class="card-header">
-                                            <h1 class="card-title"> Documents</h1>
-                                          </div>
-                                          <div class="card-body">
-                                              <table class="table">
-                                                <thead class=" text-primary">
-                                                  <th>
-                                                    Name
-                                                  </th>
-                                                  <th>
-                                                    OCR
-                                                  </th>
-                                                  <th class="text-right">
-                                                    Download
-                                                  </th>
-                                                </thead>
-                                                <tbody *ngFor="let file of files; let i = index">
-                                                  <tr>
-                                                    <td>
-                                                        {{ file?.name }}
-                                                    </td>
-                                                    <td>
-                                                        <input class="ocrBox" type="checkbox" id="ocr" name="ocr" value="ocr">&nbsp;
-                                                        <label for="ocr">English</label><br>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        <label class="downloadBtn" (click)="onDownload(file?.name)">Download</label>
-                                                    </td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                          </div>
+                                            <div class="card-header">
+                                                <h1 class="card-title"> Documents</h1>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table">
+                                                    <thead class=" text-primary">
+                                                        <th>
+                                                            Name
+                                                        </th>
+                                                        <th>
+                                                            OCR
+                                                        </th>
+                                                        <th class="text-right">
+                                                            Download
+                                                        </th>
+                                                    </thead>
+                                                    <tbody *ngFor="let file of files; let i = index">
+                                                        <tr>
+                                                            <td>
+                                                                {{ file?.name }}
+                                                            </td>
+                                                            <td>
+                                                                <input class="ocrBox" type="checkbox" id="ocr"
+                                                                    name="ocr" value="ocr">&nbsp;
+                                                                <label for="ocr">English</label><br>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <label class="downloadBtn"
+                                                                    (click)="onDownload(file?.name)">Download</label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
 
-                                <button mat-button matStepperPrevious>Previous</button>
-                                <button mat-button matStepperNext style="float: right;" (click)="onFinish(profileFormGroup)">Finish</button>
+                                <button mat-button matStepperPrevious (click)="onPrevious()">Previous</button>
+                                <button mat-button matStepperNext style="float: right;"
+                                    (click)="onFinish(profileFormGroup)">Finish</button>
                             </mat-step>
                         </mat-horizontal-stepper>
                     </div>
