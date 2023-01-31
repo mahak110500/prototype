@@ -5,7 +5,7 @@
             <div class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <mat-horizontal-stepper labelPosition="botton" linear="false">
+                        <mat-horizontal-stepper labelPosition="botton" linear="true">
                             <mat-step [stepControl]="profileFormGroup">
                                 <form [formGroup]="profileFormGroup" (ngSubmit)="onSubmit(profileFormGroup)">
                                     <ng-template matStepLabel>Step-1</ng-template>
@@ -146,8 +146,8 @@
                                 <div class="imgContainer">
                                     <mat-label style="color: rgb(4, 4, 65);">
                                         <h1>Documents Upload</h1>
-                                        <!-- <span style="color: red;">(Only csv, xlsx, xls, doc, docx, ppt, jpg, jpeg, png, pdf, txt file is allowed)
-                                        </span> -->
+                                        <span style="color: red;">(Only csv, xlsx, xls, doc, docx, ppt, jpg, jpeg, pdf, txt file is allowed)
+                                        </span>
                                     </mat-label>
                                     <div>
 
@@ -168,9 +168,14 @@
 
                                             <h3>Drag and drop file here</h3>
                                             <h3>or</h3>
+                                            <!-- <img [src]="url" height="200"> <br/>
+                                            <input type='file' (change)="onSelectFile($event)"> -->
                                             <label class="fileDrop" for="fileDropRef" style="margin-bottom: 10px;">Browse for
                                                 file</label>
                                         </div>
+
+                                       
+
                                         <div class="files-list">
                                             <div class="single-file" *ngFor="let file of files; let i = index">
                                                 <div class="file-icon" style="width: 60px">
@@ -310,7 +315,7 @@
                                                         <label for="ocr">English</label><br>
                                                     </td>
                                                     <td class="text-right">
-                                                        <label class="downloadBtn">Download</label>
+                                                        <label class="downloadBtn" (click)="onDownload(file?.name)">Download</label>
                                                     </td>
                                                   </tr>
                                                 </tbody>

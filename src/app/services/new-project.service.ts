@@ -3,25 +3,23 @@ import { Injectable } from '@angular/core';
 import { UserData } from '../models/userData.model';
 
 
-interface FormresponseData {
-	customer_insertId: number
-	project_insertId: number
-}
+
 
 @Injectable({
 	providedIn: 'root'
 })
 export class NewProjectService {
 	profileForm: any;
-	newProjectData:any;
-
+	newProjectData: any;
+	customerId:any;
+	projectId:any;
 
 	constructor(private http: HttpClient) { }
 
 	postDetails(formData) {
 		this.profileForm = formData;
 		// console.log(formData);
-		
+
 
 		let auth_token = JSON.parse(localStorage.getItem('token'));
 		// console.log(auth_token);
@@ -62,38 +60,32 @@ export class NewProjectService {
 
 
 
-	uploadFile() {
-		this.newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
-		console.log(this.newProjectData);
+	uploadFile(files:any) {
 
-		
 		this.newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
-		console.log(this.newProjectData);
-		console.log(this.newProjectData.customer_insertId);
 
 		let customerId = this.newProjectData.customer_insertId;
-		console.log(customerId);
-
 		let projectId = this.newProjectData.project_insertId;
-		console.log(projectId);
-		
 
-		let newData = { 'customerId':customerId, 'projectId': projectId};
-		console.log(newData);
+		let file : File = files[0];
 		
 		
-	
+		const formData = new FormData();
+		formData.append('customerId', customerId);
+		formData.append('projectId', projectId);
+		formData.append('file', file);
+		console.log(files);
 
 		let auth_token = JSON.parse(localStorage.getItem('token'));
-		// console.log(auth_token);
 
 		const headers = new HttpHeaders({
-			'Content-Type': 'application/json',
 			'Authorization': `${auth_token}`
 		});
 
 		const options = { headers: headers }
+		// const FormData = { customerId, projectId }
 
-		return this.http.post<FormresponseData>(`http://103.127.29.85:3000/api//admin/upload-doc`, newData,options)
+
+		return this.http.post<any>(`http://103.127.29.85:3000/api//admin/upload-doc`,formData,options)
 	}
 }

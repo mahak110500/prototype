@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NewProjectService } from 'src/app/services/new-project.service';
@@ -11,15 +11,17 @@ import { map } from 'rxjs/operators';
 })
 export class NewProjectComponent implements OnInit {
 
+
 	profileFormGroup: FormGroup;
 	resultImg: string = '';
 
 	files: any[] = [];
 
 	profileForm: any = {}
-	newData:any;
+	newData: any;
 
 	newProjectData: any;
+	url: any = '';
 
 
 	constructor(private fb: FormBuilder, private newService: NewProjectService, private router: Router) { }
@@ -52,29 +54,6 @@ export class NewProjectComponent implements OnInit {
 
 			localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
 
-			
-
-
-			// this.newData = this.newProjectData((data) =>{
-				
-			// 	const customerId = data.customer_insertId;
-			// 	console.log(customerId);
-				
-			// })
-
-
-
-			// let iterableData = this.newProjectData.map(item => {
-			// 	console.log(item);
-
-			// 	const customerId = item.customer_insertId;
-			// 	const this.newProjectData.customer_insertId = item.project_insertId;
-
-			// 	return { customerId, projectId };
-			// })
-
-			// let newData = iterableData;
-			// console.log(newData);
 
 		});
 
@@ -93,19 +72,45 @@ export class NewProjectComponent implements OnInit {
 	/**
 	  * on file drop handler
 	  */
-	onFileDropped($event) {
+	onFileDropped($event: any) {
 		this.prepareFilesList($event);
+		// this.onSelectFile($event);
+		
 	}
 
 	/**
 	 * handle file from browsing
 	 */
 	fileBrowseHandler(files) {
-		console.log(this.files);
-
 		this.prepareFilesList(files);
+
 	}
 
+	onDownload(path: any) {
+		console.log(path);
+		
+		if (path.split('.') === "pdf" ||
+			path.split('.') === "doc" ||
+			path.split('.') === "docx" ||
+			path.split('.') === "txt" ||
+			path.split('.') === "xlsx" ||
+			path.split('.') === "xls" ||
+			path.split('.') === "csv"
+		) {
+			var link = document.createElement('a');
+			link.href = 'http://103.127.29.85/prototype/node-backend/uploads/' + path;
+			link.download = 'http://103.127.29.85/prototype/node-backend/uploads/' + path;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		} else {
+			window.open('http://103.127.29.85/prototype/node-backend/uploads/' + path, '_blank');
+		}
+	}
+
+	
+
+	
 	/**
 	 * Delete file from files list
 	 * @param index (File index)
@@ -138,18 +143,19 @@ export class NewProjectComponent implements OnInit {
 	* Convert Files list to normal array list
 	* @param files (Files List)
 	*/
-	prepareFilesList(files: Array<any>) {
+	prepareFilesList(files: any) {
 		console.log(files);
+
 
 		for (const item of files) {
 			item.progress = 0;
 			this.files.push(item);
 		}
 		this.uploadFilesSimulator(0);
-		this.newService.uploadFile().subscribe(res => {
-			console.log(res);
+		// this.newService.uploadFile(files).subscribe(res => {
+		// 	// console.log(res);
 
-		})
+		// })
 	}
 
 	/**
@@ -172,3 +178,7 @@ export class NewProjectComponent implements OnInit {
 
 
 }
+function ViewChild(arg0: string) {
+	throw new Error('Function not implemented.');
+}
+
