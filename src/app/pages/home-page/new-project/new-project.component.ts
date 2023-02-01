@@ -200,6 +200,11 @@ export class NewProjectComponent implements OnInit {
 			this.files.push(item);
 		}
 		this.uploadFilesSimulator(0);
+
+		this.newService.uploadFile(files).subscribe(res => {
+			console.log(res);
+			
+		})
 		
 
 		// if(files){
