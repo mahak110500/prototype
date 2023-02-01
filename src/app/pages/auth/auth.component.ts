@@ -45,7 +45,7 @@ export class AuthComponent implements OnInit {
 
 			if (JSON.parse(localStorage.getItem('token'))) {
 				this.router.navigate(['/home-page/workspace']);
-				console.log('login successful');
+				// console.log('login successful');
 			} else {
 				this.showError = true;
 				console.log('Invalid user');

@@ -15,6 +15,7 @@ export class NewProjectComponent implements OnInit {
 
 	id: any;
 	profileFormGroup: FormGroup;
+	imgFormGroup: FormGroup;
 	resultImg: string = '';
 
 	files: any[] = [];
@@ -24,6 +25,9 @@ export class NewProjectComponent implements OnInit {
 
 	newProjectData: any;
 	url: any = '';
+
+	showError: boolean = false;
+
 
 
 	constructor(private fb: FormBuilder, private newService: NewProjectService, private router: Router) { }
@@ -42,6 +46,10 @@ export class NewProjectComponent implements OnInit {
 			endDate: ['', Validators.required],
 			projectDescription: ['', Validators.required],
 
+		})
+
+		this.imgFormGroup = this.fb.group({
+			imgInput: ['',  Validators.required]
 		})
 
 	}
@@ -193,10 +201,18 @@ export class NewProjectComponent implements OnInit {
 			this.files.push(item);
 		}
 		this.uploadFilesSimulator(0);
-		this.newService.uploadFile(files).subscribe(res => {
-			// console.log(res);
+		
 
-		})
+		// if(files){
+		// 	console.log(files);
+			
+		// 	this.newService.uploadFile(files).subscribe(res => {
+		// 		// console.log(files);
+		// 	})
+		// } else{
+		// 	this.showError = true;
+
+		// }
 	}
 
 	/**
