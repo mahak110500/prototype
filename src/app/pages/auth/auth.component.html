@@ -26,6 +26,9 @@
                             Password must contain atleast 6 characters
                         </div>
                     </div>
+                    <div *ngIf="showError" style="color: red;">
+                        <h3>Invalid Credentials</h3>
+                    </div>
                 </div><br>
                 <div>
                     <a routerLink="/forget-password">Forget Password</a>

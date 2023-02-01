@@ -19,44 +19,52 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="active ">
-                <a routerLink="/workspace">
+                <a routerLink="/home-page/workspace">
                     <i class="nc-icon nc-bank"></i>
                     <p>WORKSPACE</p>
                 </a>
             </li>
             <li>
-                <a routerLink="/manage-projects">
+                <a routerLink="/home-page/manage-projects">
                     <i class="nc-icon nc-diamond"></i>
                     <p>MANAGE PROJECTS</p>
                 </a>
             </li>
             <li>
-                <a routerLink="/new-project">
+                <a routerLink="/home-page/new-project">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>NEW PROJECT</p>
                 </a>
             </li>
             <li>
-                <a routerLink="/extract">
+                <a routerLink="/home-page/extract">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>EXTRACT</p>
                 </a>
             </li>
             <li>
-                <a routerLink="/configure">
+                <a routerLink="/home-page/configure">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>CONFIGURE</p>
                 </a>
             </li>
             <li>
-                <a routerLink="/admin">
+                <a >
                     <i class="nc-icon nc-single-02"></i>
                     <p (click)="toggle()">ADMIN</p>
                     <ul>
-                        <li class="hidden" *ngIf ="hidden">USER MANAGEMENT</li>
-                        <li class="hidden" *ngIf ="hidden">INSTANCE MANAGEMENT</li>
-                        <li class="hidden" *ngIf ="hidden">BILLING</li>
-                        <li class="hidden" *ngIf ="hidden">CAPACITY</li>
+                        <a routerLink="/home-page/admin/user-management">
+                            <li class="hidden" *ngIf ="hidden" >USER MANAGEMENT</li>
+                        </a>
+                        <a routerLink="/home-page/admin/instance-management">
+                            <li class="hidden" *ngIf ="hidden">INSTANCE MANAGEMENT</li>
+                        </a>
+                        <a routerLink="/home-page/admin/billing">
+                            <li class="hidden" *ngIf ="hidden">BILLING</li>
+                        </a>
+                        <a routerLink="/home-page/admin/capacity">
+                            <li class="hidden" *ngIf ="hidden">CAPACITY</li>
+                        </a>
                     </ul>
                        
                     <!-- <a href="#" (click)="toggle()">{{showMore}}</a> -->

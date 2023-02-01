@@ -18,7 +18,6 @@ export class NewProjectService {
 
 	postDetails(formData) {
 		this.profileForm = formData;
-		// console.log(formData);
 
 
 		let auth_token = JSON.parse(localStorage.getItem('token'));
@@ -60,11 +59,14 @@ export class NewProjectService {
 	}
 
 	putDetails(formData){
+		this.profileForm = formData;
+		
+
 		this.newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
 		let customerId = this.newProjectData.customer_insertId;
 		let projectId = this.newProjectData.project_insertId;
 
-		this.profileForm = formData;
+
 
 		let auth_token = JSON.parse(localStorage.getItem('token'));
 		const headers = new HttpHeaders({
@@ -73,7 +75,7 @@ export class NewProjectService {
 		});
 		const options = { headers: headers }
 
-		return this.http.put<UserData>(`http://103.127.29.85:3000/api/admin/update-customer-project/495/project/463`, formData, options)
+		return this.http.put<UserData>(`http://103.127.29.85:3000/api/admin/update-customer-project/`+customerId+`/project/`+projectId, formData, options)
 
 
 	}

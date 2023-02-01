@@ -12,6 +12,9 @@ export class ManageProjectsComponent implements OnInit {
 	dataList:any = [];
 	p:any;
 
+	//loader variable default true before pge load
+	loader = true;
+
 	constructor(private manage: ManageProjectsService) { }
 
 	ngOnInit(): void {
@@ -20,6 +23,11 @@ export class ManageProjectsComponent implements OnInit {
 			// console.log(this.projectData.content.dataList);
 			this.dataList = this.projectData.content.dataList;
 		});
+
+		setTimeout(() => {
+			this.loader = false;
+			
+		}, 1000);
 
 	}
 

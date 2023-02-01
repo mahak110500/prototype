@@ -8,10 +8,18 @@
 				</div>
 			</nav>
 			<!-- End Navbar -->
+
+
 			<div class="content">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="card">
+						<!-- Loader div starts -->
+						<div class="spinner-border text-dark" style="width: 3rem; height: 3rem; margin-left: 450px; margin-top: 200px;"
+							role="status" *ngIf="loader">
+							<span class="visually-hidden">Loading..</span>
+						</div>
+						<!-- Loader div ends -->
+						<div class="card" *ngIf="!loader">
 							<div class="card-header">
 								<h4 class="card-title"> Simple Table</h4>
 							</div>
@@ -32,8 +40,9 @@
 												Complete %
 											</th>
 										</thead>
-										<tbody >
-											<tr  *ngFor="let data of dataList | paginate: {itemsPerPage:10, currentPage:p}">
+										<tbody>
+											<tr
+												*ngFor="let data of dataList | paginate: {itemsPerPage:10, currentPage:p}">
 												<td>
 													{{data.first_name}} {{data.last_name}}
 												</td>
@@ -49,7 +58,8 @@
 											</tr>
 										</tbody>
 									</table><br>
-									<pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+									<pagination-controls (pageChange)="p = $event"
+										class="float-right"></pagination-controls>
 								</div>
 							</div>
 						</div>
@@ -57,6 +67,8 @@
 
 				</div>
 			</div>
+
+
 		</div>
 	</div>
 </body>

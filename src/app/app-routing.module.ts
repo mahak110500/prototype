@@ -10,6 +10,10 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthGuard } from './pages/auth/auth.guard';
 import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
+import { BillingComponent } from './pages/home-page/admin/billing/billing.component';
+import { CapacityComponent } from './pages/home-page/admin/capacity/capacity.component';
+import { InstanceManagementComponent } from './pages/home-page/admin/instance-management/instance-management.component';
+import { UserManagementComponent } from './pages/home-page/admin/user-management/user-management.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -17,67 +21,88 @@ const routes: Routes = [
 		path: 'auth',
 		component: AuthComponent,
 		// canActivate: [AuthGuard]
-	
+
 	},
 	{
 		path: 'forget-password',
 		component: ForgetPasswordComponent,
-	
+
 	},
 	{
 		path: 'home-page',
 		component: HomePageComponent,
-		canActivate: [AuthGuard]
-	
-	},
-	{
-		path: 'workspace',
-		component: WorkspaceComponent,
-		canActivate: [AuthGuard]
-
-	
-	},
-	{
-		path: 'manage-projects',
-		component: ManageProjectsComponent,
-		canActivate: [AuthGuard]
+		canActivate: [AuthGuard],
+		children: [
+			{
+				path: 'workspace',
+				component: WorkspaceComponent
 
 
-	
-	},
-	{
-		path: 'new-project',
-		component: NewProjectComponent,
-		canActivate: [AuthGuard]
+			},
+			{
+				path: 'manage-projects',
+				component: ManageProjectsComponent
 
-	
-	},
-	{
-		path: 'extract',
-		component: ExtractComponent,
-		canActivate: [AuthGuard]
 
-	
-	},
-	{
-		path: 'configure',
-		component: ConfigureComponent,
-		canActivate: [AuthGuard]
 
-	
-	},
-	{
-		path: 'admin',
-		component: AdminComponent,
-		canActivate: [AuthGuard]
+			},
+			{
+				path: 'new-project',
+				component: NewProjectComponent
 
-	
-	},
 
+			},
+			{
+				path: 'extract',
+				component: ExtractComponent
+
+
+			},
+			{
+				path: 'configure',
+				component: ConfigureComponent
+
+
+			},
+			{
+				path: 'admin',
+				component: AdminComponent,
+				children: [
+					{
+						path: 'user-management',
+						component: UserManagementComponent
+		
+		
+					},
+					{
+						path: 'instance-management',
+						component: InstanceManagementComponent
+		
+		
+					},
+					{
+						path: 'billing',
+						component: BillingComponent
+		
+		
+					},
+					{
+						path: 'capacity',
+						component: CapacityComponent
+		
+		
+					},
+				]
+
+			},
+
+		]
+
+	}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

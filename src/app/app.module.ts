@@ -25,6 +25,10 @@ import { MatInputModule } from '@angular/material/input';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { ProgressComponent } from './pages/home-page/new-project/progress/progress.component';
 import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
+import { UserManagementComponent } from './pages/home-page/admin/user-management/user-management.component';
+import { InstanceManagementComponent } from './pages/home-page/admin/instance-management/instance-management.component';
+import { BillingComponent } from './pages/home-page/admin/billing/billing.component';
+import { CapacityComponent } from './pages/home-page/admin/capacity/capacity.component';
 
 
 @NgModule({
@@ -42,7 +46,11 @@ import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-pas
     SidebarComponent,
     HeaderComponent,
     ProgressComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    UserManagementComponent,
+    InstanceManagementComponent,
+    BillingComponent,
+    CapacityComponent
   ],
   imports: [
     BrowserModule,

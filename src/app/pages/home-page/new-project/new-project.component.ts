@@ -55,8 +55,11 @@ export class NewProjectComponent implements OnInit {
 		});
 
 		let newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
+		// console.log(newProjectData);
+		
 		if (newProjectData != null) {
 			this.onNext(this.profileForm);
+			
 		}
 
 
@@ -66,35 +69,24 @@ export class NewProjectComponent implements OnInit {
 		// });
 
 
-		// if(this.backInfo){
-
-		// }else{
-		// 	this.newService.postDetails(this.profileForm).subscribe((res: any) => {
-		// 		// console.log(res.content.dataList[0]);
-		// 		localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
-		// 	});
-		// }
-
-
 	}
 
 	onPrevious() {
 		this.backInfo = true;
 		this.newService.getDetails().subscribe(res => {
-			console.log(res);
+			// console.log(res);
 		});
 	}
 
 	onNext(profileFormGroup) {
 		this.profileForm = profileFormGroup.value;
-		console.log(this.profileForm);
 
 
 		let newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
 
 		if (newProjectData != null) {
 			this.newService.putDetails(this.profileForm).subscribe(res => {
-				console.log(res);
+				// console.log(res);
 
 			})
 		}
@@ -131,7 +123,6 @@ export class NewProjectComponent implements OnInit {
 	 * for downloading file
 	 */
 	onDownload(path: any) {
-		console.log(path);
 
 		if (path.split('.') === "pdf" ||
 			path.split('.') === "doc" ||
@@ -196,8 +187,6 @@ export class NewProjectComponent implements OnInit {
 	* @param files (Files List)
 	*/
 	prepareFilesList(files: any) {
-		console.log(files);
-
 
 		for (const item of files) {
 			item.progress = 0;
