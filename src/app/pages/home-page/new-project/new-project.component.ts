@@ -57,25 +57,25 @@ export class NewProjectComponent implements OnInit {
 	onSubmit(profileFormGroup) {
 		this.profileForm = profileFormGroup.value;
 
-		this.newService.postDetails(this.profileForm).subscribe((res: any) => {
-			// console.log(res.content.dataList[0]);
-			localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
-		});
+		// if(localStorage.getItem('newProjectData')){
+		// 	console.log(localStorage.getItem('newProjectData'));
+		// 	this.newProjectData = JSON.parse(localStorage.getItem('newProjectData')) ;
+		// }
 
-		let newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
-		// console.log(newProjectData);
+		this.newProjectData = JSON.parse(localStorage.getItem('newProjectData')) ;
+		console.log(this.newProjectData );
 		
-		if (newProjectData != null) {
+		
+		if (this.newProjectData != null) {
 			this.onNext(this.profileForm);
 			
+		}else{
+			this.newService.postDetails(this.profileForm).subscribe((res: any) => {
+				// console.log(res.content.dataList[0]);
+				localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
+			});
+
 		}
-
-
-		// this.newService.postDetails(this.profileForm).subscribe((res: any) => {
-		// 	// console.log(res.content.dataList[0]);
-		// 	localStorage.setItem('newProjectData', JSON.stringify(res.content.dataList[0]));
-		// });
-
 
 	}
 
@@ -87,8 +87,7 @@ export class NewProjectComponent implements OnInit {
 	}
 
 	onNext(profileFormGroup) {
-		this.profileForm = profileFormGroup.value;
-
+		console.log(profileFormGroup);
 
 		let newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
 

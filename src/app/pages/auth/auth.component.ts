@@ -28,8 +28,6 @@ export class AuthComponent implements OnInit {
 			return;
 		}
 
-
-
 		this.authService.login(loginForm.value.email, loginForm.value.password).subscribe((result: any) => {
 			this.data = result;
 
@@ -37,9 +35,6 @@ export class AuthComponent implements OnInit {
 				this.isSellerLoggedIn.next(true);
 				localStorage.setItem('userData', JSON.stringify(result.content.dataList[0].userDetails));
 				localStorage.setItem('token', JSON.stringify(result.content.dataList[0].token));
-
-
-				JSON.parse(localStorage.getItem('newProjectData'));
 			}
 
 

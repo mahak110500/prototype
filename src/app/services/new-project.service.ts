@@ -60,6 +60,8 @@ export class NewProjectService {
 
 	putDetails(formData){
 		this.profileForm = formData;
+		console.log(this.profileForm);
+		
 		
 
 		this.newProjectData = JSON.parse(localStorage.getItem('newProjectData'));
